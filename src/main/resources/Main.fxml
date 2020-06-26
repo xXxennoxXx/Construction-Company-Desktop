@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="960.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainController">
+   <children>
+      <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <BorderPane prefHeight="400.0" prefWidth="1280.0">
+               <top>
+                  <VBox BorderPane.alignment="CENTER">
+                     <children>
+                        <MenuBar style="-fx-border-color: grey; -fx-border-width: 0 0 2 0;">
+                          <menus>
+                            <Menu mnemonicParsing="false" text="File">
+                              <items>
+                                <MenuItem fx:id="miExit" mnemonicParsing="false" onAction="#exit" text="Close" />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Edit">
+                              <items>
+                                <MenuItem mnemonicParsing="false" text="Delete" />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Help">
+                              <items>
+                                <MenuItem mnemonicParsing="false" text="About" />
+                              </items>
+                            </Menu>
+                          </menus>
+                        </MenuBar>
+                     </children>
+                  </VBox>
+               </top>
+               <right>
+                  <HBox BorderPane.alignment="CENTER">
+                     <children>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <GridPane>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="183.0" text="Show Houses">
+                                       <font>
+                                          <Font name="Times New Roman Italic" size="25.0" />
+                                       </font>
+                                       <FlowPane.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </FlowPane.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="183.0" text="Show Workers">
+                                       <font>
+                                          <Font name="Times New Roman Italic" size="25.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </FlowPane>
+                              <FlowPane alignment="BOTTOM_CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Button fx:id="btnReload" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#click" prefHeight="100.0" prefWidth="176.0" style="-fx-font-size: 20; -fx-font-weight: bold;" styleClass="danger" text="Load This Tab">
+                                       <FlowPane.margin>
+                                          <Insets bottom="10.0" top="20.0" />
+                                       </FlowPane.margin>
+                                       <font>
+                                          <Font name="Times New Roman Bold Italic" size="29.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </FlowPane>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </HBox>
+               </right>
+               <center>
+                  <BorderPane>
+                     <center>
+                        <TabPane fx:id="tbMainTabPane" />
+                     </center>
+                     <bottom>
+                        <ListView fx:id="lvInfo" prefHeight="139.0" prefWidth="872.0" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets right="-2.0" />
+                           </BorderPane.margin>
+                        </ListView>
+                     </bottom>
+                  </BorderPane>
+               </center>
+               <left>
+                  <HBox BorderPane.alignment="CENTER">
+                     <children>
+                        <Accordion>
+                          <panes>
+                            <TitledPane animated="false" text="Display Data">
+                                 <content>
+                                    <ListView fx:id="lvConstructions" onMouseClicked="#conClick" prefHeight="200.0" prefWidth="200.0" />
+                                 </content>
+                            </TitledPane>
+                            <TitledPane animated="false" text="Add Data">
+                              <content>
+                                    <ListView fx:id="lvAddData" onMouseClicked="#addClick" prefHeight="845.0" prefWidth="200.0" />
+                              </content>
+                            </TitledPane>
+                          </panes>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Accordion>
+                        <Separator orientation="VERTICAL" prefHeight="200.0">
+                           <HBox.margin>
+                              <Insets left="-2.0" right="-4.0" />
+                           </HBox.margin>
+                        </Separator>
+                     </children>
+                  </HBox>
+               </left>
+            </BorderPane>
+            <FlowPane fx:id="piProgress" alignment="CENTER" visible="false">
+               <children>
+                  <ProgressIndicator prefHeight="206.0" prefWidth="222.0" />
+               </children>
+            </FlowPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
